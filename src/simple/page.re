@@ -1,6 +1,7 @@
-let component = ReasonReact.statefulComponent "Price";
 
 type state = {price: Api.price};
+let component = ReasonReact.statefulComponent "Price";
+
 
 let make children => {
   let handleLoaded price {ReasonReact.state: state} =>
