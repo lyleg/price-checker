@@ -4,7 +4,7 @@ type state = {price: Api.price};
 
 let make children => {
   let handleLoaded price {ReasonReact.state: state} =>
-    ReasonReact.Update {...state, price};
+    ReasonReact.Update {price: price};
   {
     ...component,
     didMount: fun self => {
