@@ -6,10 +6,42 @@ type timeObj = {
   updateduk: string
 };
 
+type countryObj = {
+  code: string,
+  description: string,
+  rate: string,
+  rate_float: float,
+  symbol: string
+};
+
+type bpiObj = {
+  usd: countryObj,
+  eur: countryObj,
+  gbp: countryObj
+};
+
 type price = {
   chartName: string,
-  time: timeObj
+  time: timeObj,
+  bpi: bpiObj
 };
+
+let parseCountry json :countryObj =>{
+  Json.Decode.{
+    code: json |> field "code" string,
+        description: json |> field "description" string,
+            rate: json |> field "rate" string,
+                rate_float: json |> field "rate_float" float,
+                    symbol: json |> field "symbol" string
+  }
+};
+
+let parseBPIObj json : bpiObj =>
+  Json.Decode.{
+    eur: json |> field "eur" parseCountry,
+    usd: json |> field "usd" parseCountry,
+    gbp: json |> field "gbp" parseCountry
+  };
 
 let parseTimeObj json :timeObj =>
   Json.Decode.{
@@ -21,7 +53,8 @@ let parseTimeObj json :timeObj =>
 let parseBTCPrice json :price =>
   Json.Decode.{
     chartName: json |> field "chartName" string,
-    time: json |> field "time" parseTimeObj
+    time: json |> field "time" parseTimeObj,
+    bpi: json |> field "bpi" parseBPIObj
   };
 
 let fetchBTCPrice callback =>
