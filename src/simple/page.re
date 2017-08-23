@@ -2,22 +2,18 @@ type state = {price: Api.price};
 
 let component = ReasonReact.statefulComponent "Price";
 
-let defaultCountry :API.countryObj = {
+let defaultCountry: Api.countryObj = {
   code: "",
   description: "",
   rate: "",
   rate_float: 0.0,
-  symbol:""
+  symbol: ""
 };
 
 let defaultPrice: Api.price = {
   chartName: "",
   time: {updated: "", updatedISO: "", updateduk: ""},
-  bpi:{
-    eur:defaultCountry,
-    usd:defaultCountry,
-    gbp:defaultCountry
-  }
+  bpi: {eur: defaultCountry, usd: defaultCountry, gbp: defaultCountry}
 };
 
 let make children => {
@@ -33,9 +29,11 @@ let make children => {
     render: fun {state} => {
       let chartName = state.price.chartName;
       let time = state.price.time;
+      let rate = state.price.bpi.usd.rate;
       <div className="price">
         (ReasonReact.stringToElement chartName)
         (ReasonReact.stringToElement time.updated)
+        (ReasonReact.stringToElement rate)
       </div>
     }
   }

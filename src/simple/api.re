@@ -26,21 +26,20 @@ type price = {
   bpi: bpiObj
 };
 
-let parseCountry json :countryObj =>{
+let parseCountry json :countryObj =>
   Json.Decode.{
     code: json |> field "code" string,
-        description: json |> field "description" string,
-            rate: json |> field "rate" string,
-                rate_float: json |> field "rate_float" float,
-                    symbol: json |> field "symbol" string
-  }
-};
+    description: json |> field "description" string,
+    rate: json |> field "rate" string,
+    rate_float: json |> field "rate_float" float,
+    symbol: json |> field "symbol" string
+  };
 
-let parseBPIObj json : bpiObj =>
+let parseBPIObj json :bpiObj =>
   Json.Decode.{
-    eur: json |> field "eur" parseCountry,
-    usd: json |> field "usd" parseCountry,
-    gbp: json |> field "gbp" parseCountry
+    eur: json |> field "EUR" parseCountry,
+    usd: json |> field "USD" parseCountry,
+    gbp: json |> field "GBP" parseCountry
   };
 
 let parseTimeObj json :timeObj =>
