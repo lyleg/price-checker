@@ -56,7 +56,7 @@ let parseBTCPrice json :price =>
     bpi: json |> field "bpi" parseBPIObj
   };
 
-let fetchBTCPrice callback =>
+let fetchBTCPrice callback=>
   Js.Promise.(
     Bs_fetch.fetch apiUrl |> then_ Bs_fetch.Response.text |>
     then_ (

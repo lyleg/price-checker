@@ -7,7 +7,8 @@
   "reason": {
     "react-jsx": 2
   },
-  "bs-dependencies": ["reason-react", "bs-fetch", "bs-json"],
+  "bsc-flags": ["-bs-no-version-header", "-bs-super-errors"],
+  "bs-dependencies": ["reason-react", "bs-fetch", "bs-json", "bs-glamor"],
   "sources": [{
     "dir": "src",
     "subdirs": ["interop", "simple"],
