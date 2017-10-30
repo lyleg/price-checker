@@ -15,29 +15,29 @@ let defaultPrice: Api.price = {
 };
 
 type action =
-  | DataLoaded(Api.price);
+  | DataLoaded Api.price;
 
-let component = ReasonReact.reducerComponent("Price");
+let component = ReasonReact.reducerComponent "Price";
 
-let make = (_children) => {
+let make _children => {
   ...component,
   initialState: fun () => ({price: defaultPrice}: state),
-  reducer: (action, _state) =>
+  reducer: fun action _state =>
     switch action {
-    | DataLoaded(data) => ReasonReact.Update({price: data})
+    | DataLoaded data => ReasonReact.Update {price: data}
     },
-  didMount: (self) => {
-    Api.fetchBTCPrice(self.reduce((data) => DataLoaded(data)));
+  didMount: fun self => {
+    Api.fetchBTCPrice (self.reduce (fun data => DataLoaded data));
     ReasonReact.NoUpdate
   },
-  render: ({state}) => {
+  render: fun {state} => {
     let chartName = state.price.chartName;
     let time = state.price.time;
     let rate = state.price.bpi.usd.rate;
     <div className="price">
-      (ReasonReact.stringToElement(chartName))
-      (ReasonReact.stringToElement(time.updated))
-      (ReasonReact.stringToElement(rate))
+      (ReasonReact.stringToElement chartName)
+      (ReasonReact.stringToElement time.updated)
+      (ReasonReact.stringToElement rate)
     </div>
   }
 };

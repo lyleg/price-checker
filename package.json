@@ -1,28 +1,22 @@
 {
-  "name": "price-chcker",
-  "private": true,
+  "name": "price-checker",
   "version": "0.1.0",
-  "description": "",
-  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "bsb -make-world -w",
+    "clean": "bsb -clean-world",
+    "bsb-build": "bsb -make-world",
     "build": "webpack -w",
-    "clean": "bsb -clean-world"
+    "watch": "bsb -make-world -w"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "BuckleScript"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "bs-platform": "2.0.0",
+    "webpack": "^3.5.5"
+  },
   "dependencies": {
     "bs-fetch": "^0.1.1",
-    "bs-glamor": "^0.1.3",
-    "bs-json": "^0.2.1",
-    "react": "^15.4.2",
-    "react-dom": "^15.4.2",
-    "reason-react": ">=0.2.4"
-  },
-  "devDependencies": {
-    "bs-platform": "^1.9.0",
-    "webpack": "^1.14.0"
+    "bs-json": "^0.2.1"
   }
 }
